@@ -1,0 +1,100 @@
+﻿@model IEnumerable<Surveys.Models.UserSurveyPage>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Fullname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfBirth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contact)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pizza)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pasta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PapAndWors)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Other)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EatOutRating)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ListenToRadioRating)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WatchMoviesRating)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WatchTVRating)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fullname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateOfBirth)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contact)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pizza)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pasta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PapAndWors)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Other)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EatOutRating)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ListenToRadioRating)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WatchMoviesRating)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WatchTVRating)
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.UserId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.UserId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.UserId })
+        </td>
+    </tr>
+}
+
+</table>
