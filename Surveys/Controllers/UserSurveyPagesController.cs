@@ -23,7 +23,7 @@ namespace Surveys.Controllers
         }
 
         // GET: UserSurveyPages
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.UserSurveyPages.ToList());
@@ -42,6 +42,7 @@ namespace Surveys.Controllers
                 double totalAge = 0;
                 DateTime oldestDateOfBirth = DateTime.MinValue;
                 DateTime youngestDateOfBirth = DateTime.MaxValue;
+
                 foreach (var userSurveyPage in userSurveyPages)
                 {
                     totalAge += CalculateAge(userSurveyPage.DateOfBirth);
@@ -57,8 +58,13 @@ namespace Surveys.Controllers
                         youngestDateOfBirth = userSurveyPage.DateOfBirth;
                     }
                 }
+
                 double averageAge = totalAge / totalSubmissions;
-                ViewBag.AverageAge = averageAge;
+                double roundedAverageAge = Math.Round(averageAge, 2);
+                ViewBag.AverageAge = roundedAverageAge;
+
+
+
 
                 // Calculate age of the oldest person
                 int oldestAge = CalculateAge(oldestDateOfBirth);
@@ -73,27 +79,33 @@ namespace Surveys.Controllers
                 //                                    .FirstOrDefault(u => u.DateOfBirth == youngestDateOfBirth)
                 //                                    ?.Fullname;
 
+
+
                 // Calculate percentage of people who checked Pizza
                 int pizzaLoversCount = userSurveyPages.Count(u => u.Pizza);
                 double pizzaLoversPercentage = (double)pizzaLoversCount / totalSubmissions * 100;
-                ViewBag.PizzaLoversPercentage = pizzaLoversPercentage;
+                double roundedPizzaPercentage = Math.Round(pizzaLoversPercentage, 2);
+                ViewBag.PizzaLoversPercentage = roundedPizzaPercentage;
+
 
                 // Calculate percentage of people who checked Pasta
                 int pastaLoversCount = userSurveyPages.Count(u => u.Pasta);
                 double pastaLoversPercentage = (double)pastaLoversCount / totalSubmissions * 100;
-                ViewBag.PastaLoversPercentage = pastaLoversPercentage;
+                double roundedPercentage = Math.Round(pastaLoversPercentage, 2);
+                ViewBag.PastaLoversPercentage = roundedPercentage;
 
-                //PapAndWors
+                //Pap&Wors
                 int papAndWorsLoversCount = userSurveyPages.Count(u => u.PapAndWors);
                 double papAndWorsLoversPercentage = (double)papAndWorsLoversCount / totalSubmissions * 100;
-                ViewBag.PapAndWorsLoversPercentage = papAndWorsLoversPercentage;
+                double roundedPapAndWorsPercentage = Math.Round(papAndWorsLoversPercentage, 2);
+                ViewBag.PapAndWorsLoversPercentage = roundedPapAndWorsPercentage;
 
 
                 // Create a dictionary to store the most rated ratings for each activity
                 var mostRatedRatings = new Dictionary<string, string>();
 
                 // Define the list of activities
-                var activities = new List<string> { "Average ratings of Watch TV", "Average ratings of Listen to Radio", "Average ratings of Eat Out", "Average ratings of Watch Movies" };
+                var activities = new List<string> { "Average ratings of Watching TV", "Average ratings of Listening to Radio", "Average ratings of Eating Out", "Average ratings of Watching Movies" };
 
                 foreach (var activity in activities)
                 {
@@ -137,7 +149,7 @@ namespace Surveys.Controllers
             int age = today.Year - dateOfBirth.Year;
             if (dateOfBirth.Date > today.AddYears(-age))
             {
-                age--; // If birthday hasn't occurred yet this year, subtract one year
+                age--; 
             }
             return age;
         }
@@ -165,13 +177,13 @@ namespace Surveys.Controllers
         {
             switch (activity)
             {
-                case "Average ratings of Watch TV":
+                case "Average ratings of Watching TV":
                     return GetRatingValue(userSurveyPage.WatchTVRating);
-                case "Average ratings of Listen to Radio":
+                case "Average ratings of Listening to Radio":
                     return GetRatingValue(userSurveyPage.ListenToRadioRating);
-                case "Average ratings of Eat Out":
+                case "Average ratings of Eating Out":
                     return GetRatingValue(userSurveyPage.EatOutRating);
-                case "Average ratings of Watch Movies":
+                case "Average ratings of Watching Movies":
                     return GetRatingValue(userSurveyPage.WatchMoviesRating);
                 default:
                     return 0; // If the activity is not recognized

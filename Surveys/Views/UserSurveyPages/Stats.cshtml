@@ -3,37 +3,83 @@
     ViewBag.Title = "Statistics";
 }
 
-<h2>Survey Statistics</h2>
+<h2>Survey Results</h2>
+<head>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
 
-@if (ViewBag.NoStatsAvailable == true)
-{
-    <p>No statistics available.</p>
-}
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
 
-    <h3>Total Submissions: @ViewBag.TotalSubmissions</h3>
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<body>
+    @if (ViewBag.NoStatsAvailable == true)
+    {
+        <p>No statistics available.</p>
+    }
+    <table>
+        <tr>
 
-    <h3>Average Age: @ViewBag.AverageAge</h3>
-    <h4>Youngest Person (Age @ViewBag.OldestAge): @ViewBag.OldestPersonName</h4>
-    <h4>Oldest Person (Age @ViewBag.YoungestAge): @ViewBag.YoungestPersonName</h4>
+            <td> <h5>Total Submissions:</h5></td>
+            <td> <h5>@ViewBag.TotalSubmissions</h5></td>
+        </tr>
+        <tr>
+            <td> </td>
+            <td> </td>
+        </tr>
+        <tr>
+            <td> <h5>Average Age:</h5></td>
+            <td> <h5>@ViewBag.AverageAge</h5></td>
+        </tr>
+        <tr>
+            <td> <h5>Youngest Person</h5></td>
+            <td> <h5>(Age @ViewBag.OldestAge)</h5></td>
+        </tr>
+        <tr>
+            <td> <h5>Oldest Person</h5></td>
+            <td> <h5>(Age @ViewBag.YoungestAge )</h5></td>
+        </tr>
+        <tr>
+            <td> </td>
+            <td> </td>
+        </tr>
+
+        <tr>
+            <td> <h5>Percentage of People Who Liked Pizza:</h5></td>
+            <td> <h5>@ViewBag.PizzaLoversPercentage%</h5></td>
+        </tr>
+        <tr>
+            <td> <h5>Percentage of People Who Liked Pasta:</h5></td>
+            <td> <h5>@ViewBag.PastaLoversPercentage%</h5></td>
+        </tr>
+        <tr>
+            <td> <h5>Percentage of People Who Liked Pap&Wors:</h5></td>
+            <td> <h5>@ViewBag.PapAndWorsLoversPercentage%</h5></td>
+        </tr>
+        <tr>
+            <td> </td>
+            <td> </td>
+        </tr>
+        
+    </table>
     <br />
 
-    <h3>Percentage of People Who Liked Pizza: @ViewBag.PizzaLoversPercentage%</h3>
-    <h3>Percentage of People Who Liked Pasta: @ViewBag.PastaLoversPercentage%</h3>
-    <h3>Percentage of People Who Liked Pap and Wors: @ViewBag.PapAndWorsLoversPercentage%</h3>
-    <br />
-
-    @*<h3>Average Rating for Watching TV: @ViewBag.WatchTVAverageRating</h3>
-        <h3>Average Rating for Listening to Radio: @ViewBag.ListenToRadioAverageRating</h3>
-        <h3>Average Rating for Eating Out: @ViewBag.EatOutAverageRating</h3>
-        <h3>Average Rating for Watching Movies: @ViewBag.WatchMoviesAverageRating</h3>*@
-
-@foreach (var activityRating in Model)
-{
-    <h3>@activityRating.Key: @activityRating.Value</h3>
-}
-
-
-
-
+    @foreach (var activityRating in Model)
+    {
+        <h3>@activityRating.Key: @activityRating.Value</h3>
+        
+    }
+</body>
 
 
