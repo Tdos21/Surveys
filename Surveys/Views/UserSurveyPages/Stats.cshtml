@@ -28,58 +28,62 @@
     {
         <p>No statistics available.</p>
     }
-    <table>
-        <tr>
-
-            <td> <h5>Total Submissions:</h5></td>
-            <td> <h5>@ViewBag.TotalSubmissions</h5></td>
-        </tr>
-        <tr>
-            <td> </td>
-            <td> </td>
-        </tr>
-        <tr>
-            <td> <h5>Average Age:</h5></td>
-            <td> <h5>@ViewBag.AverageAge</h5></td>
-        </tr>
-        <tr>
-            <td> <h5>Youngest Person</h5></td>
-            <td> <h5>(Age @ViewBag.OldestAge)</h5></td>
-        </tr>
-        <tr>
-            <td> <h5>Oldest Person</h5></td>
-            <td> <h5>(Age @ViewBag.YoungestAge )</h5></td>
-        </tr>
-        <tr>
-            <td> </td>
-            <td> </td>
-        </tr>
-
-        <tr>
-            <td> <h5>Percentage of People Who Liked Pizza:</h5></td>
-            <td> <h5>@ViewBag.PizzaLoversPercentage%</h5></td>
-        </tr>
-        <tr>
-            <td> <h5>Percentage of People Who Liked Pasta:</h5></td>
-            <td> <h5>@ViewBag.PastaLoversPercentage%</h5></td>
-        </tr>
-        <tr>
-            <td> <h5>Percentage of People Who Liked Pap&Wors:</h5></td>
-            <td> <h5>@ViewBag.PapAndWorsLoversPercentage%</h5></td>
-        </tr>
-        <tr>
-            <td> </td>
-            <td> </td>
-        </tr>
-        
-    </table>
-    <br />
-
-    @foreach (var activityRating in Model)
+    else
     {
-        <h3>@activityRating.Key: @activityRating.Value</h3>
-        
+        <table>
+            <tr>
+
+                <td> <h5>Total Submissions:</h5></td>
+                <td> <h5>@ViewBag.TotalSubmissions</h5></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td> </td>
+            </tr>
+            <tr>
+                <td> <h5>Average Age:</h5></td>
+                <td> <h5>@ViewBag.AverageAge</h5></td>
+            </tr>
+            <tr>
+                <td> <h5>Youngest Person</h5></td>
+                <td> <h5>(Age @ViewBag.OldestAge)</h5></td>
+            </tr>
+            <tr>
+                <td> <h5>Oldest Person</h5></td>
+                <td> <h5>(Age @ViewBag.YoungestAge )</h5></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td> </td>
+            </tr>
+
+            <tr>
+                <td> <h5>Percentage of People Who Liked Pizza:</h5></td>
+                <td> <h5>@ViewBag.PizzaLoversPercentage%</h5></td>
+            </tr>
+            <tr>
+                <td> <h5>Percentage of People Who Liked Pasta:</h5></td>
+                <td> <h5>@ViewBag.PastaLoversPercentage%</h5></td>
+            </tr>
+            <tr>
+                <td> <h5>Percentage of People Who Liked Pap&Wors:</h5></td>
+                <td> <h5>@ViewBag.PapAndWorsLoversPercentage%</h5></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td> </td>
+            </tr>
+
+        </table>
+        <br />
+
+        foreach (var activityRating in Model)
+        {
+            <h3>@activityRating.Key: @activityRating.Value</h3>
+
+        }
     }
+
 </body>
 
 
